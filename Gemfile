@@ -35,6 +35,7 @@ gem 'simple_token_authentication', '~> 1.0'
 
 # Serialization
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'fast_jsonapi'
 
 # Easier filters
 gem 'has_scope'

@@ -27,7 +27,7 @@ class Api::V1::ProjectionsController < ApplicationController
 
     @projections = Projection.where(id: 1) unless @projections.present?
 
-    render json: @projections
+    render json: ProjectionSerializer.new(@projections).serialized_json
   rescue State::DataNotFound => e
     logger.error e.backtrace.first(5).join('\n')
     logger.error "*ERROR* Projections#index -> #{e}"
@@ -35,7 +35,7 @@ class Api::V1::ProjectionsController < ApplicationController
 
   # GET /projections/1
   def show
-    render json: @projection
+    render json: ProjectionSerializer.new(@projection).serialized_json
   end
 
   # POST /projections
@@ -43,7 +43,7 @@ class Api::V1::ProjectionsController < ApplicationController
     @projection = Projection.new(projection_params)
 
     if @projection.save
-      render json: @projection
+      render json: ProjectionSerializer.new(@projection).serialized_json
     else
       render json: @projection.errors, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class Api::V1::ProjectionsController < ApplicationController
   # PATCH/PUT /projections/1
   def update
     if @projection.update(projection_params)
-      render json: @projection
+      render json: ProjectionSerializer.new(@projection).serialized_json
     else
       render json: @projection.errors, status: :unprocessable_entity
     end

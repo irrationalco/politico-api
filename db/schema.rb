@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 20180112030633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "TestTable", force: :cascade do |t|
-  end
-
   create_table "demographics", force: :cascade do |t|
     t.integer  "section_code"
     t.integer  "muni_code"
