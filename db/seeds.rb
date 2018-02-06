@@ -214,3 +214,50 @@ unless Rails.env == 'production'
   User.create(email: 'supervisor@irrational.ly', password: 'supervisor', supervisor: true)
   User.create(email: 'superadmin@irrational.ly', password: 'superadmin', superadmin: true)
 end
+
+forecast_seeder = CSV.read('forecast_seeder.csv')
+forecast_seeder.shift
+
+forecast_seeder.each do |row|
+  puts row
+  forecast_type = row[0].to_i
+  state = row[1]
+  district    = row[2].to_i
+  section     = row[3] .to_i
+  muni = row[4].to_i
+
+  pan    = row[5].to_f
+  pconv  = row[6].to_f
+  pes  = row[7].to_f
+  ph   = row[8].to_f
+  pmc  = row[9].to_f
+  pmor = row[10].to_f
+  pna  = row[11].to_f
+  ppm  = row[12].to_f
+  prd  = row[13].to_f
+  pri  = row[14].to_f
+  psd  = row[15].to_f
+  psm  = row[16].to_f
+  pt   = row[17].to_f
+  pvem = row[18].to_f
+
+  Forecast.create forecast_type: forecast_type,
+                  state_code: state,
+                  muni_code: muni,
+                  district_code: district,
+                  section_code: section,
+                  PAN: pan,
+                  PCONV: pconv,
+                  PES: pes,
+                  PH: ph,
+                  PMC: pmc,
+                  PMOR: pmor,
+                  PNA: pna,
+                  PPM: ppm,
+                  PRD: prd,
+                  PRI: pri,
+                  PSD: psd,
+                  PSM: psm,
+                  PT: pt,
+                  PVEM: pvem
+end
