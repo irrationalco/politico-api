@@ -9,7 +9,6 @@ class Api::V1::DemographicsController < ApplicationController
     end
     @demographics = Demographic.where(id: 1) unless @demographics.present?
 
-    puts DemographicSerializer.new(@demographics.first).serialized_json
     render json: DemographicSerializer.new(@demographics).serialized_json
   rescue State::DataNotFound => e
     logger.error e.backtrace.first(5).join('\n')
