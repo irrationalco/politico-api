@@ -20,7 +20,7 @@ module ElectionApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins Rails.application.secrets.client_host
-        resource '*', headers: :any, methods: %i[get post options delete put]
+        resource '*', headers: :any, methods: %i[get post options delete put patch]
       end
     end
   end

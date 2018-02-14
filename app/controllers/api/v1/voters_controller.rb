@@ -14,6 +14,8 @@ class Api::V1::VotersController < ApplicationController
                 Voter.where(user: params[:uid].to_i)
               end
 
+    @voters = Voter.all
+
     @voters = @voters.order(created_at: :desc)
 
     if params['q'].present?
@@ -32,9 +34,10 @@ class Api::V1::VotersController < ApplicationController
 
     if params['per_page'].present? && params['page'].present?
       @voters = @voters.page(params['page']).per(params['per_page'])
-      render json: @voters, meta: { total: @voters.total_pages }
+      options = { meta: { total: @voters.total_pages } }
+      render json: VoterSerializer.new(@voters, options).serialized_json
     else
-      render json: @voters
+      render json: VoterSerializer.new(@voters).serialized_json
     end
   end
 
@@ -42,7 +45,7 @@ class Api::V1::VotersController < ApplicationController
     begin
       invalid_rows = Voter.import(params[:file], params[:user_id].to_i)
     rescue StandardError
-      render status:	:no_content
+      render status: :no_content
       return
     end
     if invalid_rows.nil?
@@ -54,7 +57,7 @@ class Api::V1::VotersController < ApplicationController
 
   # GET /voters/1
   def show
-    render json: @voter
+    render json: VoterSerializer.new(@voter).serialized_json
   end
 
   # POST /voters
@@ -64,7 +67,7 @@ class Api::V1::VotersController < ApplicationController
     @voter[:suborganization_id] = user[:suborganization_id] if user
 
     if @voter.save
-      render json: @voter, status: :created
+      render json: VoterSerializer.new(@voter).serialized_json
     else
       render json: @voter.errors, status: :unprocessable_entity
     end
@@ -73,7 +76,7 @@ class Api::V1::VotersController < ApplicationController
   # PATCH/PUT /voters/1
   def update
     if @voter.update(voter_params)
-      render json: @voter
+      render json: VoterSerializer.new(@voter).serialized_json
     else
       render json: @voter.errors, status: :unprocessable_entity
     end
@@ -93,6 +96,15 @@ class Api::V1::VotersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def voter_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    params.require(:data)
+          .require(:attributes)
+          .permit(:user_id, :electoral_id_number, :expiration_date, :emission_year, :first_name,
+                  :first_last_name, :second_last_name, :gender, :date_of_birth, :electoral_code,
+                  :curp, :state, :municipality, :locality, :section, :suburb, :street, :outside_number,
+                  :inside_number, :postal_code, :state_code, :municipality_code, :locality_code,
+                  :home_phone, :mobile_phone, :email, :alternative_email, :facebook_account,
+                  :highest_educational_level, :current_ocupation, :organization, :party_positions_held,
+                  :is_part_of_party, :has_been_candidate, :popular_election_position, :election_year,
+                  :won_election, :election_route, :notes)
   end
 end
