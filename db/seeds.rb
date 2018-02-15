@@ -204,7 +204,7 @@ puts "Done states cache: #{Time.now - t}s"
 # puts "Done voters: #{Time.now - t}s"
 
 unless Rails.env == 'production'
-  puts 'Available Users:\n'
+  puts "\nAvailable Users:\n"
   puts 'Manager: manager@irrational.ly Pass: manager'
   puts 'Capturist: capturist@irrational.ly Pass: capturist'
   puts 'Supervisor: supervisor@irrational.ly Pass: supervisor'
