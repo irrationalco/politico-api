@@ -1,4 +1,5 @@
-class VoterSerializer < ActiveModel::Serializer
+class VoterSerializer
+  include FastJsonapi::ObjectSerializer
   attributes :id, :user_id, :electoral_id_number,
              :expiration_date, :first_name, :first_last_name,
              :second_last_name, :gender, :date_of_birth, :electoral_code,
