@@ -76,7 +76,7 @@ class Api::V1::ProjectionsController < ApplicationController
   end
 
   def get_history(section, municipality, state, federal_district, level)
-    parties = %w[PAN PCONV PES PH PMC PMOR PNA PPM PRD PRI PSD PSM PT PVEM]
+    parties = %w[pan pconv pes ph pmc pmor pna ppm prd pri psd psm pt pvem]
     result = nil
     case level
     when 'section'

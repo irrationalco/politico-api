@@ -5,20 +5,20 @@ class StateCache < ApplicationRecord
 
   def to_projection
     Projection.new do |r|
-      r.PAN = self.PAN
-      r.PCONV = self.PCONV
-      r.PES = self.PES
-      r.PH = self.PH
-      r.PMC = self.PMC
-      r.PMOR = self.PMOR
-      r.PNA = self.PNA
-      r.PPM = self.PPM
-      r.PRD = self.PRD
-      r.PRI = self.PRI
-      r.PSD = self.PSD
-      r.PSM = self.PSM
-      r.PT = self.PT
-      r.PVEM = self.PVEM
+      r.pan = pan
+      r.pconv = pconv
+      r.pes = pes
+      r.ph = ph
+      r.pmc = pmc
+      r.pmor = pmor
+      r.pna = pna
+      r.ppm = ppm
+      r.prd = prd
+      r.pri = pri
+      r.psd = psd
+      r.psm = psm
+      r.pt = pt
+      r.pvem = pvem
       r.total_votes = total_votes
       r.state_code = state_code
       r.election_type = election_type
