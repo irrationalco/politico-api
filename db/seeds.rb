@@ -123,8 +123,8 @@ ActiveRecord::Base.logger.silence do
     Projection.create(state_code: state_code, muni_code: muni_code, section_code: section_code,
                       district_code: district_code, nominal_list: nominal_list,
                       year: year, election_type: election_type,
-                      PAN: pan, PCONV: pconv, PES: pes, PH: ph, PMC: pmc, PMOR: pmor, PNA: pna, PPM: ppm, PRD: prd,
-                      PRI: pri, PSD: psd, PSM: psm, PT: pt, PVEM: pvem, total_votes: total)
+                      pan: pan, pconv: pconv, pes: pes, ph: ph, pmc: pmc, pmor: pmor, pna: pna, ppm: ppm, prd: prd,
+                      pri: pri, psd: psd, psm: psm, pt: pt, pvem: pvem, total_votes: total)
   end
 end
 
@@ -136,18 +136,18 @@ puts 'Creating states chache...'
 t = Time.now
 
 ActiveRecord::Base.logger.silence do
-  state_data = Projection.select('SUM("PAN") as "PAN", SUM("PCONV") as "PCONV", SUM("PES") as "PES",
-                                  SUM("PH") as "PH", SUM("PMC") as "PMC", SUM("PMOR") as "PMOR", SUM("PNA") as "PNA",
-                                  SUM("PPM") as "PPM", SUM("PRD") as "PRD", SUM("PRI") as "PRI", SUM("PSD") as "PSD",
-                                  SUM("PSM") as "PSM", SUM("PT") as "PT", SUM("PVEM") as "PVEM", SUM("total_votes") as
+  state_data = Projection.select('SUM("pan") as "pan", SUM("pconv") as "pconv", SUM("pes") as "pes",
+                                  SUM("ph") as "ph", SUM("pmc") as "pmc", SUM("pmor") as "pmor", SUM("pna") as "pna",
+                                  SUM("ppm") as "ppm", SUM("prd") as "prd", SUM("pri") as "pri", SUM("psd") as "psd",
+                                  SUM("psm") as "psm", SUM("pt") as "pt", SUM("pvem") as "pvem", SUM("total_votes") as
                                   "total_votes", state_code, year, election_type')
                          .group(:state_code, :year, :election_type)
 
   state_data.each do |data|
     StateCache.create(state_code: data.state_code, year: data.year, election_type: data.election_type,
-                      PAN: data.PAN, PCONV: data.PCONV, PES: data.PES, PH: data.PH, PMC: data.PMC,
-                      PMOR: data.PMOR, PNA: data.PNA, PPM: data.PPM, PRD: data.PRD, PRI: data.PRI,
-                      PSD: data.PSD, PSM: data.PSM, PT: data.PT, PVEM: data.PVEM, total_votes: data.total_votes)
+                      pan: data.pan, pconv: data.pconv, pes: data.pes, ph: data.ph, pmc: data.pmc,
+                      pmor: data.pmor, pna: data.pna, ppm: data.ppm, prd: data.prd, pri: data.pri,
+                      psd: data.psd, psm: data.psm, pt: data.pt, pvem: data.pvem, total_votes: data.total_votes)
   end
 end
 
@@ -159,7 +159,7 @@ puts "Done states cache: #{Time.now - t}s"
 # ANO, Eleccion, Id_entidad, Entidad, Id_municipio, Municipio, id_distrito, seccion, nominal,
 #
 #  9    10      11    12   13  14    15   16   17   18   19   20   21   22   23   24
-# PAN, PCONV, PDSPPN, PES, PH, PMC, PMOR, PNA, PPM, PRD, PRI, PSD, PSM, PSN, PT, PVEM
+# pan, pconv, PDSPPN, pes, ph, pmc, pmor, pna, ppm, prd, pri, psd, psm, PSN, pt, pvem
 ###########################################################################################################
 
 # Creando Voters
