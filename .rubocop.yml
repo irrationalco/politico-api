@@ -55,3 +55,6 @@ Style/FormatStringToken:
 
 Style/Lambda:
   Enabled: false
+
+Style/AsciiComments:
+  Enabled: false

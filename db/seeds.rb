@@ -3,155 +3,155 @@ require 'csv'
 ########################################
 # Demographics Dummy Data for Nuevo Leon
 # Municipalities
-puts 'Creating states and municipalities...'
-t = Time.now
+# puts 'Creating states and municipalities...'
+# t = Time.now
 
-ActiveRecord::Base.logger.silence do
-  for i in 0..55
-    for j in 0..3000
-      Demographic.create(section_code: j, muni_code: i, state_code: 19, district_code: nil,
-                         total: Random.rand(5000), year: 2015, hombres: Random.rand(0.0...100.0).round(2),
-                         mujeres: Random.rand(0.0...100.0).round(2), hijos: Random.rand(0.5...4).round(2),
-                         entidad_nac: Random.rand(0.0...100.0).round(2),
-                         entidad_inm: Random.rand(0.0...100.0).round(2),
-                         limitacion: Random.rand(0.0...100.0).round(2),
-                         analfabetismo: Random.rand(0.0...100.0).round(2),
-                         educacion_av: Random.rand(0.0...100.0).round(2),
-                         pea: Random.rand(0.0...100.0).round(2),
-                         no_serv_salud: Random.rand(0.0...100.0).round(2),
-                         matrimonios: Random.rand(0.0...100.0).round(2),
-                         hogares: Random.rand(0.0...100.0).round(2),
-                         hogares_jefa: Random.rand(0.0...100.0).round(2),
-                         hogares_pob: Random.rand(0.0...100.0).round(2),
-                         auto: Random.rand(0.0...100.0).round(2),
-                         entidad_mig: Random.rand(0.0...100.0).round(2))
-    end
-  end
+# ActiveRecord::Base.logger.silence do
+#   for i in 0..55
+#     for j in 0..3000
+#       Demographic.create(section_code: j, muni_code: i, state_code: 19, district_code: nil,
+#                          total: Random.rand(5000), year: 2015, hombres: Random.rand(0.0...100.0).round(2),
+#                          mujeres: Random.rand(0.0...100.0).round(2), hijos: Random.rand(0.5...4).round(2),
+#                          entidad_nac: Random.rand(0.0...100.0).round(2),
+#                          entidad_inm: Random.rand(0.0...100.0).round(2),
+#                          limitacion: Random.rand(0.0...100.0).round(2),
+#                          analfabetismo: Random.rand(0.0...100.0).round(2),
+#                          educacion_av: Random.rand(0.0...100.0).round(2),
+#                          pea: Random.rand(0.0...100.0).round(2),
+#                          no_serv_salud: Random.rand(0.0...100.0).round(2),
+#                          matrimonios: Random.rand(0.0...100.0).round(2),
+#                          hogares: Random.rand(0.0...100.0).round(2),
+#                          hogares_jefa: Random.rand(0.0...100.0).round(2),
+#                          hogares_pob: Random.rand(0.0...100.0).round(2),
+#                          auto: Random.rand(0.0...100.0).round(2),
+#                          entidad_mig: Random.rand(0.0...100.0).round(2))
+#     end
+#   end
 
-  # Districts
-  for x in 0..20
-    for y in 0..3000
-      Demographic.create(section_code: y, muni_code: nil, state_code: 19, district_code: x,
-                         total: Random.rand(5000), year: 2015, hombres: Random.rand(0.0...100.0).round(2),
-                         mujeres: Random.rand(0.0...100.0).round(2), hijos: Random.rand(0.5...4).round(2),
-                         entidad_nac: Random.rand(0.0...100.0).round(2),
-                         entidad_inm: Random.rand(0.0...100.0).round(2),
-                         limitacion: Random.rand(0.0...100.0).round(2),
-                         analfabetismo: Random.rand(0.0...100.0).round(2),
-                         educacion_av: Random.rand(0.0...100.0).round(2),
-                         pea: Random.rand(0.0...100.0).round(2),
-                         no_serv_salud: Random.rand(0.0...100.0).round(2),
-                         matrimonios: Random.rand(0.0...100.0).round(2),
-                         hogares: Random.rand(0.0...100.0).round(2),
-                         hogares_jefa: Random.rand(0.0...100.0).round(2),
-                         hogares_pob: Random.rand(0.0...100.0).round(2),
-                         auto: Random.rand(0.0...100.0).round(2),
-                         entidad_mig: Random.rand(0.0...100.0).round(2))
-    end
-  end
-end
+#   # Districts
+#   for x in 0..20
+#     for y in 0..3000
+#       Demographic.create(section_code: y, muni_code: nil, state_code: 19, district_code: x,
+#                          total: Random.rand(5000), year: 2015, hombres: Random.rand(0.0...100.0).round(2),
+#                          mujeres: Random.rand(0.0...100.0).round(2), hijos: Random.rand(0.5...4).round(2),
+#                          entidad_nac: Random.rand(0.0...100.0).round(2),
+#                          entidad_inm: Random.rand(0.0...100.0).round(2),
+#                          limitacion: Random.rand(0.0...100.0).round(2),
+#                          analfabetismo: Random.rand(0.0...100.0).round(2),
+#                          educacion_av: Random.rand(0.0...100.0).round(2),
+#                          pea: Random.rand(0.0...100.0).round(2),
+#                          no_serv_salud: Random.rand(0.0...100.0).round(2),
+#                          matrimonios: Random.rand(0.0...100.0).round(2),
+#                          hogares: Random.rand(0.0...100.0).round(2),
+#                          hogares_jefa: Random.rand(0.0...100.0).round(2),
+#                          hogares_pob: Random.rand(0.0...100.0).round(2),
+#                          auto: Random.rand(0.0...100.0).round(2),
+#                          entidad_mig: Random.rand(0.0...100.0).round(2))
+#     end
+#   end
+# end
 
-puts "Done Demographics: #{Time.now - t}s"
+# puts "Done Demographics: #{Time.now - t}s"
 
 ##############################
 # Creando estados y municipios
-puts 'Creating states and municipalities...'
-t = Time.now
+# puts 'Creating states and municipalities...'
+# t = Time.now
 
-ActiveRecord::Base.logger.silence do
-  muni_ids = CSV.read('tbl_ids.csv')
-  muni_ids.shift
+# ActiveRecord::Base.logger.silence do
+#   muni_ids = CSV.read('tbl_ids.csv')
+#   muni_ids.shift
 
-  muni_ids.each do |row|
-    row[1] = 'Veracruz de Ignacio de la Llave' if row[1] == 'Veracruz'
-    row[1] = 'Michoacán de Ocampo' if row[1] == 'Michoacán'
-    row[1] = 'Michoacán de Ocampo' if row[1] == 'Michoacán'
-    row[1] = 'Coahuila de Zaragoza' if row[1] == 'Coahuila'
+#   muni_ids.each do |row|
+#     row[1] = 'Veracruz de Ignacio de la Llave' if row[1] == 'Veracruz'
+#     row[1] = 'Michoacán de Ocampo' if row[1] == 'Michoacán'
+#     row[1] = 'Michoacán de Ocampo' if row[1] == 'Michoacán'
+#     row[1] = 'Coahuila de Zaragoza' if row[1] == 'Coahuila'
 
-    state = State.find_or_create_by(name: row[1]) do |a_state|
-      a_state.state_code = row[0]
-    end
+#     state = State.find_or_create_by(name: row[1]) do |a_state|
+#       a_state.state_code = row[0]
+#     end
 
-    muni = Municipality.where(name: row[3]).take
-    muni = if muni.nil?
-             Municipality.create(name: row[3], muni_code: row[2], state_code: row[0])
-           elsif muni.state_code != state.state_code
-             Municipality.create(name: row[3], muni_code: row[2], state_code: row[0])
-           end
+#     muni = Municipality.where(name: row[3]).take
+#     muni = if muni.nil?
+#              Municipality.create(name: row[3], muni_code: row[2], state_code: row[0])
+#            elsif muni.state_code != state.state_code
+#              Municipality.create(name: row[3], muni_code: row[2], state_code: row[0])
+#            end
 
-    state.municipalities << muni unless muni.nil? && state.municipalities.exists?(id: muni.id)
-  end
-end
+#     state.municipalities << muni unless muni.nil? && state.municipalities.exists?(id: muni.id)
+#   end
+# end
 
-puts "Done munis: #{Time.now - t}s"
+# puts "Done munis: #{Time.now - t}s"
 
 ######################################
 # Cargando datos historicos del INE
-puts 'Creating projections...'
-t = Time.now
+# puts 'Creating projections...'
+# t = Time.now
 
-ActiveRecord::Base.logger.silence do
-  ine_data = CSV.read('tbl_ine.csv')
-  ine_data.shift
+# ActiveRecord::Base.logger.silence do
+#   ine_data = CSV.read('tbl_ine.csv')
+#   ine_data.shift
 
-  ine_data.each do |row|
-    year          = row[0].to_i
-    election_type = row[1]
-    state_code    = row[2].to_i
-    muni_code     = row[4] .to_i
-    district_code = row[6].to_i
-    section_code  = row[7].to_i
-    nominal_list  = row[8].to_i
+#   ine_data.each do |row|
+#     year          = row[0].to_i
+#     election_type = row[1]
+#     state_code    = row[2].to_i
+#     muni_code     = row[4] .to_i
+#     district_code = row[6].to_i
+#     section_code  = row[7].to_i
+#     nominal_list  = row[8].to_i
 
-    pan    = row[9].to_i
-    pconv  = row[10].to_i
-    pes  = row[12].to_i
-    ph   = row[13].to_i
-    pmc  = row[14].to_i
-    pmor = row[15].to_i
-    pna  = row[16].to_i
-    ppm  = row[17].to_i
-    prd  = row[18].to_i
-    pri  = row[19].to_i
-    psd  = row[20].to_i
-    psm  = row[21].to_i
-    pt   = row[23].to_i
-    pvem = row[24].to_i
+#     pan    = row[9].to_i
+#     pconv  = row[10].to_i
+#     pes  = row[12].to_i
+#     ph   = row[13].to_i
+#     pmc  = row[14].to_i
+#     pmor = row[15].to_i
+#     pna  = row[16].to_i
+#     ppm  = row[17].to_i
+#     prd  = row[18].to_i
+#     pri  = row[19].to_i
+#     psd  = row[20].to_i
+#     psm  = row[21].to_i
+#     pt   = row[23].to_i
+#     pvem = row[24].to_i
 
-    total = pan + pconv + pes + ph + pmc + pmor + pna + ppm + prd + pri + psd + psm + pt + pvem
+#     total = pan + pconv + pes + ph + pmc + pmor + pna + ppm + prd + pri + psd + psm + pt + pvem
 
-    Projection.create(state_code: state_code, muni_code: muni_code, section_code: section_code,
-                      district_code: district_code, nominal_list: nominal_list,
-                      year: year, election_type: election_type,
-                      pan: pan, pconv: pconv, pes: pes, ph: ph, pmc: pmc, pmor: pmor, pna: pna, ppm: ppm, prd: prd,
-                      pri: pri, psd: psd, psm: psm, pt: pt, pvem: pvem, total_votes: total)
-  end
-end
+#     Projection.create(state_code: state_code, muni_code: muni_code, section_code: section_code,
+#                       district_code: district_code, nominal_list: nominal_list,
+#                       year: year, election_type: election_type,
+#                       pan: pan, pconv: pconv, pes: pes, ph: ph, pmc: pmc, pmor: pmor, pna: pna, ppm: ppm, prd: prd,
+#                       pri: pri, psd: psd, psm: psm, pt: pt, pvem: pvem, total_votes: total)
+#   end
+# end
 
-puts "Done projections: #{Time.now - t}s"
+# puts "Done projections: #{Time.now - t}s"
 
-# ############################################################################################
-# Creando cache de datos por estado
-puts 'Creating states chache...'
-t = Time.now
+# # ############################################################################################
+# # Creando cache de datos por estado
+# puts 'Creating states chache...'
+# t = Time.now
 
-ActiveRecord::Base.logger.silence do
-  state_data = Projection.select('SUM("pan") as "pan", SUM("pconv") as "pconv", SUM("pes") as "pes",
-                                  SUM("ph") as "ph", SUM("pmc") as "pmc", SUM("pmor") as "pmor", SUM("pna") as "pna",
-                                  SUM("ppm") as "ppm", SUM("prd") as "prd", SUM("pri") as "pri", SUM("psd") as "psd",
-                                  SUM("psm") as "psm", SUM("pt") as "pt", SUM("pvem") as "pvem", SUM("total_votes") as
-                                  "total_votes", state_code, year, election_type')
-                         .group(:state_code, :year, :election_type)
+# ActiveRecord::Base.logger.silence do
+#   state_data = Projection.select('SUM("pan") as "pan", SUM("pconv") as "pconv", SUM("pes") as "pes",
+#                                   SUM("ph") as "ph", SUM("pmc") as "pmc", SUM("pmor") as "pmor", SUM("pna") as "pna",
+#                                   SUM("ppm") as "ppm", SUM("prd") as "prd", SUM("pri") as "pri", SUM("psd") as "psd",
+#                                   SUM("psm") as "psm", SUM("pt") as "pt", SUM("pvem") as "pvem", SUM("total_votes") as
+#                                   "total_votes", state_code, year, election_type')
+#                          .group(:state_code, :year, :election_type)
 
-  state_data.each do |data|
-    StateCache.create(state_code: data.state_code, year: data.year, election_type: data.election_type,
-                      pan: data.pan, pconv: data.pconv, pes: data.pes, ph: data.ph, pmc: data.pmc,
-                      pmor: data.pmor, pna: data.pna, ppm: data.ppm, prd: data.prd, pri: data.pri,
-                      psd: data.psd, psm: data.psm, pt: data.pt, pvem: data.pvem, total_votes: data.total_votes)
-  end
-end
+#   state_data.each do |data|
+#     StateCache.create(state_code: data.state_code, year: data.year, election_type: data.election_type,
+#                       pan: data.pan, pconv: data.pconv, pes: data.pes, ph: data.ph, pmc: data.pmc,
+#                       pmor: data.pmor, pna: data.pna, ppm: data.ppm, prd: data.prd, pri: data.pri,
+#                       psd: data.psd, psm: data.psm, pt: data.pt, pvem: data.pvem, total_votes: data.total_votes)
+#   end
+# end
 
-puts "Done states cache: #{Time.now - t}s"
+# puts "Done states cache: #{Time.now - t}s"
 
 ##########################################################################################################
 # tbl_ine.csv SCHEMA
@@ -219,7 +219,6 @@ forecast_seeder = CSV.read('forecast_seeder.csv')
 forecast_seeder.shift
 
 forecast_seeder.each do |row|
-  puts row
   forecast_type = row[0].to_i
   state = row[1]
   district    = row[2].to_i
@@ -246,18 +245,18 @@ forecast_seeder.each do |row|
                   muni_code: muni,
                   district_code: district,
                   section_code: section,
-                  PAN: pan,
-                  PCONV: pconv,
-                  PES: pes,
-                  PH: ph,
-                  PMC: pmc,
-                  PMOR: pmor,
-                  PNA: pna,
-                  PPM: ppm,
-                  PRD: prd,
-                  PRI: pri,
-                  PSD: psd,
-                  PSM: psm,
-                  PT: pt,
-                  PVEM: pvem
+                  pan: pan,
+                  pconv: pconv,
+                  pes: pes,
+                  ph: ph,
+                  pmc: pmc,
+                  pmor: pmor,
+                  pna: pna,
+                  ppm: ppm,
+                  prd: prd,
+                  pri: pri,
+                  psd: psd,
+                  psm: psm,
+                  pt: pt,
+                  pvem: pvem
 end

@@ -9,20 +9,20 @@ class CreateForecasts < ActiveRecord::Migration[5.0]
       
       t.integer :forecast_type, default: 0
 
-      t.float :PAN, default: 0.0
-      t.float :PCONV, default: 0.0
-      t.float :PES, default: 0.0
-      t.float :PH, default: 0.0
-      t.float :PMC, default: 0.0
-      t.float :PMOR, default: 0.0
-      t.float :PNA, default: 0.0
-      t.float :PPM, default: 0.0
-      t.float :PRD, default: 0.0
-      t.float :PRI, default: 0.0
-      t.float :PSD, default: 0.0
-      t.float :PSM, default: 0.0
-      t.float :PT, default: 0.0
-      t.float :PVEM, default: 0.0
+      t.float :pan, default: 0.0
+      t.float :pconv, default: 0.0
+      t.float :pes, default: 0.0
+      t.float :ph, default: 0.0
+      t.float :pmc, default: 0.0
+      t.float :pmor, default: 0.0
+      t.float :pna, default: 0.0
+      t.float :ppm, default: 0.0
+      t.float :prd, default: 0.0
+      t.float :pri, default: 0.0
+      t.float :psd, default: 0.0
+      t.float :psm, default: 0.0
+      t.float :pt, default: 0.0
+      t.float :pvem, default: 0.0
 
       t.timestamps
     end
